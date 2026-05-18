@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 =============================================================================
- ANALYSE DU VOCABULAIRE o200k_base (GPT-4o / GPT-4.1 / GPT-5)
+ ANALYSE DU VOCABULAIRE o200k_base (GPT-4o / GPT-4.1 / o1 / o3)
  La preuve chiffree et reproductible de la sous-representation de l'arabe.
  Pour #DataBelarebia / databelarebia.com  --  Miloud Belarebia
 =============================================================================
@@ -11,7 +11,7 @@ CE QUE FAIT CE SCRIPT
   2. Decode les ~200 000 tokens
   3. Classe chaque token par script Unicode (arabe / latin / CJK / chiffre / autre)
   4. Affiche le decompte + les pourcentages
-  5. Mesure la "taxe" : meme phrase en anglais vs darija, nb de tokens reel
+  5. Mesure la "taxe" : meme phrase en EN vs arabe (MSA + Darija), nb de tokens reel
 
 PREREQUIS (a lancer une fois dans ton terminal) :
     pip install tiktoken
@@ -129,17 +129,31 @@ print("   ", "  ".join(arabic_examples[:20]) if arabic_examples
 
 
 # --------------------------------------------------------------------------
-# 5) LA TAXE MESUREE : meme phrase, anglais vs darija
+# 5) LA TAXE MESUREE : meme idee, EN vs arabe (MSA + Darija)
 # --------------------------------------------------------------------------
+# Trois paires choisies sur le registre AI / tech / business : c'est LA
+# ou la taxe mord le plus fort, et c'est exactement le registre qui
+# compte pour un produit IA, une API, un chatbot.
+#
+# Note honnete : sur des salutations courantes ("salam", "kifash"), la
+# taxe est nettement plus faible, parfois proche de 1.0x. Le 2x n'est
+# PAS uniforme sur toute la langue arabe -- il frappe le vocabulaire
+# moderne/technique. C'est documente dans le README.
+#
+# Mix MSA + Darija intentionnel : les deux registres paient la taxe.
 print("\n" + "=" * 62)
 print("  LA TAXE LINGUISTIQUE, MESUREE SUR LE VRAI TOKENIZER")
+print("  (registre AI / tech -- voir README pour la nuance par registre)")
 print("=" * 62)
 pairs = [
-    ("Hello, how are you today?",        "السلام عليكم كيف داير اليوم"),
-    ("Artificial intelligence is here.", "الذكاء الاصطناعي وصل"),
-    ("The model learns from data.",      "الموديل كيتعلم من الداتا"),
+    # MSA -- hero phrase de l'infographie : 4 vs 8 tokens exactement
+    ("Artificial intelligence is here",        "الذكاء الاصطناعي وصل"),
+    # MSA -- vocabulaire produit / API
+    ("The algorithm processes user requests",  "الخوارزمية تعالج طلبات المستخدمين"),
+    # Darija marocaine -- emprunts AI (موديل / داتا)
+    ("The model learns from data",             "الموديل كيتعلم من الداتا"),
 ]
-print(f"  {'EN tok':>7} | {'AR tok':>7} | {'Taxe':>6} | phrase darija")
+print(f"  {'EN tok':>7} | {'AR tok':>7} | {'Taxe':>6} | phrase arabe (MSA/Darija)")
 print("  " + "-" * 58)
 tot_en = tot_ar = 0
 for en, ar in pairs:
@@ -150,16 +164,22 @@ for en, ar in pairs:
     print(f"  {ne:7d} | {na:7d} | {na/ne:5.2f}x | {ar}")
 print("  " + "-" * 58)
 print(f"  {tot_en:7d} | {tot_ar:7d} | {tot_ar/tot_en:5.2f}x | TOTAL  "
-      f"-> la darija coute {tot_ar/tot_en:.1f}x plus cher")
+      f"-> l'arabe coute {tot_ar/tot_en:.2f}x plus cher sur ce registre")
 
 print("\n" + "=" * 62)
 print("  CONCLUSION")
 print("=" * 62)
 print(f"""  Sur {N} tokens, l'arabe en represente ~{100.0*arab/N:.1f}%.
-  Resultat direct : la meme phrase coute ~{tot_ar/tot_en:.1f}x plus de
-  tokens en darija qu'en anglais. Fenetre utile reduite d'autant,
+  Sur le registre AI/tech, la meme idee coute ~{tot_ar/tot_en:.2f}x plus de
+  tokens en arabe qu'en anglais. Fenetre utile reduite d'autant,
   cout API multiplie d'autant. Ce n'est pas une opinion : c'est
   le contenu du fichier vocabulaire officiel d'OpenAI, mesure ici.
+
+  Nuance importante : la taxe n'est PAS uniforme. Sur des phrases
+  courantes faites de mots tres frequents (salutations, verbes de
+  base), elle peut s'approcher de la parite. Elle mord le plus fort
+  sur le vocabulaire moderne, technique, business -- exactement le
+  registre qui compte pour les produits IA. Cf README pour le detail.
 
   Source primaire : github.com/openai/tiktoken
   Reproductible : relance ce script, tu auras les memes chiffres.

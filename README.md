@@ -10,7 +10,7 @@
 
 ## TL;DR
 
-I downloaded OpenAI's official tokenizer file (`o200k_base`, 200,019 entries, used by GPT-4o / GPT-4.1 / GPT-5 / o1 / o3). I measured exactly how it splits the vocabulary by writing system. **Latin gets 67.4% of the dictionary. Arabic gets 4.0%. The ratio is 17 to 1.**
+I downloaded OpenAI's official tokenizer file (`o200k_base`, 200,019 entries, used by GPT-4o / GPT-4.1 / o1 / o3 — GPT-5 uses a derived variant). I measured exactly how it splits the vocabulary by writing system. **Latin gets 67.4% of the dictionary. Arabic gets 4.0%. The ratio is 17 to 1.**
 
 Direct consequence: the same idea takes about twice as many tokens in Arabic as in English on ChatGPT — more API cost, smaller usable context window, slower answers, worse output quality.
 
@@ -59,10 +59,12 @@ This was a genuinely good idea — it guarantees that *any* character on Earth c
 
 | Year | Model | Tokenizer | Vocab size |
 |---|---|---|---:|
-| 2019 | GPT-2 | r50k_base | ~50,257 |
-| 2020 | GPT-3 | p50k_base | ~50,281 |
-| 2023 | GPT-3.5 / GPT-4 | `cl100k_base` | 100,256 |
-| 2024 | GPT-4o, o1, o3 | **`o200k_base`** | **199,997** |
+| 2019 | GPT-2 | `r50k_base` | 50,257 |
+| 2022 | `text-davinci-003` (GPT-3.5 legacy) | `p50k_base` | 50,281 |
+| 2023 | GPT-3.5 / GPT-4 | `cl100k_base` | 100,277 |
+| 2024 | GPT-4o, o1, o3 | **`o200k_base`** | **200,019** |
+
+*(All four counts are `enc.n_vocab` returned by `tiktoken` itself — reproduce with `tiktoken.get_encoding(name).n_vocab`.)*
 
 Why this race to bigger vocabularies? **Because in this architecture, it's the only way to reduce fragmentation of non-English languages.** With more vocabulary slots, BPE can finally learn a few Arabic, Chinese, Korean groupings. The famous example: *the same Chinese text that took 12 tokens in GPT-4 takes only 2 tokens in GPT-4o* — purely thanks to the larger vocab ([njkumarr](https://www.njkumar.com/gpt-o-multilingual-token-compression/)).
 
@@ -92,7 +94,9 @@ Artificial intelligence is here          →  4 tokens (English)
 الذكاء الاصطناعي وصل                       →  8 tokens (Arabic)   ← 2× the cost
 ```
 
-**+100% to express the exact same idea.** And the gap grows wider on modern, technical Arabic — exactly the register you need to talk about data, AI, business.
+**+100% to express the exact same idea — on the modern AI/tech register**, exactly the vocabulary you need to talk about data, models, business. The script (`analyse_vocab_o200k.py`) runs three such pairs and measures **1.93× aggregate** — close to the +100% headline on this register.
+
+**Caveat to stay rigorous:** the multiplier is not uniform across all Arabic. Short everyday phrases built from very frequent words (greetings, basic verbs) can land close to parity, because frequent Arabic letter clusters did make it into the BPE merges. The 2× tax bites hardest on **modern, technical, business Arabic** — which is precisely the register that matters for any product, API call, or chatbot serving Arabic-speaking users. The examples below mix **MSA** (Modern Standard Arabic) and **Darija** (Moroccan) on purpose, to show both registers carry the tax.
 
 ---
 
