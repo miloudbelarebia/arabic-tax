@@ -129,8 +129,10 @@ ax.text(BAR_X0 + w_ar + 0.014, y_ar_bar,
 
 # ==================================================================
 # BLOC 2 : THE HERO NUMBER  (+60%)
+# Card moved down 10px to give a uniform 30px gap above (after Bar AR)
+# and below (before WHY?). +60% set at 60pt and properly centered.
 # ==================================================================
-card_y0, card_y1 = 0.380, 0.545   # height = 0.165
+card_y0, card_y1 = 0.370, 0.540   # height = 0.170, ~30px gap each side
 # Subtle drop shadow (offset card behind)
 ax.add_patch(patches.FancyBboxPatch(
     (LEFT + 0.004, card_y0 - 0.006), WIDTH, card_y1 - card_y0,
@@ -141,17 +143,17 @@ ax.add_patch(patches.FancyBboxPatch(
     boxstyle="round,pad=0,rounding_size=0.025",
     facecolor=CARD, edgecolor=BORDER, linewidth=1.2))
 
-# Hero number — vertically balanced inside the card
-ax.text(0.5, 0.488, f"+{TAXE_PCT}%",
-        fontsize=64, fontweight="bold", color=ACCENT,
+# Hero number — 60pt, vertically centered with breathing room
+ax.text(0.5, 0.480, f"+{TAXE_PCT}%",
+        fontsize=60, fontweight="bold", color=ACCENT,
         ha="center", va="center")
-ax.text(0.5, 0.410, "more tokens to say the exact same thing in Darija",
+ax.text(0.5, 0.398, "more tokens to say the exact same thing in Darija",
         fontsize=13.5, color=FG, ha="center", va="center")
 
 # ==================================================================
-# BLOC 3 : WHY ?  (vocabulary imbalance — bars only, context is in header)
+# BLOC 3 : WHY ?  (~30px below the card, uniform with the other gaps)
 # ==================================================================
-ax.text(LEFT, 0.355, "WHY?",
+ax.text(LEFT, 0.340, "WHY?",
         fontsize=13, color=MUTED, ha="left", va="top", fontweight="bold")
 
 # Bars — labels left-anchored at LEFT (same X as everything else in the
@@ -165,7 +167,7 @@ bar2_h  = 0.038
 SCALE   = 70
 
 # Latin
-y_lat = 0.295
+y_lat = 0.280
 ax.text(LEFT, y_lat, "Latin",
         fontsize=14, color=LATIN_C, ha="left", va="center", fontweight="bold")
 w_lat = BAR2_W * (LATIN_PCT / SCALE)
@@ -177,7 +179,7 @@ ax.text(BAR2_X0 + w_lat + 0.012, y_lat,
         fontsize=14, color=LATIN_C, ha="left", va="center", fontweight="bold")
 
 # Arabic
-y_arb = 0.235
+y_arb = 0.225
 ax.text(LEFT, y_arb, "Arabic",
         fontsize=14, color=ACCENT, ha="left", va="center", fontweight="bold")
 w_arb = max(BAR2_W * (ARAB_PCT / SCALE), 0.010)
@@ -189,10 +191,10 @@ ax.text(BAR2_X0 + w_arb + 0.012, y_arb,
         fontsize=14, color=ACCENT, ha="left", va="center", fontweight="bold")
 
 # Causal punchline + one-line consequence
-ax.text(LEFT, 0.175,
+ax.text(LEFT, 0.170,
         f"That's {RATIO}× more Latin tokens than Arabic.",
         fontsize=16, color=FG, ha="left", va="top", fontweight="700")
-ax.text(LEFT, 0.138,
+ax.text(LEFT, 0.130,
         "Higher API cost. Smaller context window. Fragmented text.",
         fontsize=11.5, color=MUTED, ha="left", va="top")
 
