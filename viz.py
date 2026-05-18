@@ -111,7 +111,10 @@ ax.text(BAR_X0 + w_en + 0.014, y_en_bar,
 y_ar_phrase = 0.622
 y_ar_bar    = 0.577
 
-ax.text(RIGHT, y_ar_phrase, f'{ar(AR_TXT)}',
+# Anchor the Arabic phrase to the END of its red bar (BAR_X1) so phrase
+# and bar visually finish at the same X — instead of the phrase floating
+# all the way to the right of the image.
+ax.text(BAR_X1, y_ar_phrase, f'{ar(AR_TXT)}',
         fontsize=26, color=FG, ha="right", va="center",
         fontname=arab_font)
 
@@ -138,11 +141,11 @@ ax.add_patch(patches.FancyBboxPatch(
     boxstyle="round,pad=0,rounding_size=0.025",
     facecolor=CARD, edgecolor=BORDER, linewidth=1.2))
 
-# Hero number — 64pt fits comfortably inside the card
-ax.text(0.5, 0.493, f"+{TAXE_PCT}%",
+# Hero number — vertically balanced inside the card
+ax.text(0.5, 0.488, f"+{TAXE_PCT}%",
         fontsize=64, fontweight="bold", color=ACCENT,
         ha="center", va="center")
-ax.text(0.5, 0.413, "more tokens to say the exact same thing in Darija",
+ax.text(0.5, 0.410, "more tokens to say the exact same thing in Darija",
         fontsize=13.5, color=FG, ha="center", va="center")
 
 # ==================================================================
@@ -151,8 +154,10 @@ ax.text(0.5, 0.413, "more tokens to say the exact same thing in Darija",
 ax.text(LEFT, 0.355, "WHY?",
         fontsize=13, color=MUTED, ha="left", va="top", fontweight="bold")
 
-# Bars (scale 0..70% so the Latin bar nearly fills the available width)
-BAR2_X0 = LEFT + 0.08
+# Bars — labels are anchored just left of the bar (ha=right) so there is
+# no visual gap between the label and its bar.
+LABEL_X = LEFT + 0.075          # right edge of the label column
+BAR2_X0 = LABEL_X + 0.012       # bars start with a 12 px breathing space
 BAR2_X1 = RIGHT - 0.18
 BAR2_W  = BAR2_X1 - BAR2_X0
 bar2_h  = 0.038
@@ -160,8 +165,8 @@ SCALE   = 70
 
 # Latin
 y_lat = 0.295
-ax.text(LEFT, y_lat, "Latin",
-        fontsize=14, color=FG, ha="left", va="center", fontweight="600")
+ax.text(LABEL_X, y_lat, "Latin",
+        fontsize=14, color=FG, ha="right", va="center", fontweight="600")
 w_lat = BAR2_W * (LATIN_PCT / SCALE)
 ax.add_patch(patches.Rectangle(
     (BAR2_X0, y_lat - bar2_h/2), w_lat, bar2_h,
@@ -172,8 +177,8 @@ ax.text(BAR2_X0 + w_lat + 0.012, y_lat,
 
 # Arabic
 y_arb = 0.235
-ax.text(LEFT, y_arb, "Arabic",
-        fontsize=14, color=ACCENT, ha="left", va="center", fontweight="bold")
+ax.text(LABEL_X, y_arb, "Arabic",
+        fontsize=14, color=ACCENT, ha="right", va="center", fontweight="bold")
 w_arb = max(BAR2_W * (ARAB_PCT / SCALE), 0.010)
 ax.add_patch(patches.Rectangle(
     (BAR2_X0, y_arb - bar2_h/2), w_arb, bar2_h,
