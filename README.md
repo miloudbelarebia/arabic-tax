@@ -10,7 +10,7 @@
 
 ## TL;DR
 
-I downloaded OpenAI's official tokenizer file (`o200k_base`, 200,019 entries, used by GPT-4o / GPT-4.1 / o1 / o3 — GPT-5 uses a derived variant). I measured exactly how it splits the vocabulary by writing system. **Latin gets 67.4% of the dictionary. Arabic gets 4.0%. The ratio is 17 to 1.**
+I downloaded OpenAI's official tokenizer file (`o200k_base`, 200,019 entries, used by GPT-4o / GPT-4.1 / GPT-5.x / o1 / o3 — verified on [platform.openai.com/tokenizer](https://platform.openai.com/tokenizer), all return identical token counts). I measured exactly how it splits the vocabulary by writing system. **Latin gets 67.4% of the dictionary. Arabic gets 4.0%. The ratio is 17 to 1.**
 
 Direct consequence: the same idea takes about twice as many tokens in Arabic as in English on ChatGPT — more API cost, smaller usable context window, slower answers, worse output quality.
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 =============================================================================
- ANALYSE DU VOCABULAIRE o200k_base (GPT-4o / GPT-4.1 / o1 / o3)
+ ANALYSE DU VOCABULAIRE o200k_base (GPT-4o / GPT-4.1 / GPT-5.x / o1 / o3)
  La preuve chiffree et reproductible de la sous-representation de l'arabe.
  Pour #DataBelarebia / databelarebia.com  --  Miloud Belarebia
 =============================================================================
