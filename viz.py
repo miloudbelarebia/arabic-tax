@@ -14,12 +14,12 @@ import os
 # ------------------------------------------------------------------
 # Real data (measured on o200k_base, 200,019 tokens)
 # ------------------------------------------------------------------
-EN_TXT  = "Artificial intelligence is here."
+EN_TXT  = "Artificial intelligence is here"
 AR_TXT  = "الذكاء الاصطناعي وصل"
-EN_TOK  = 5
+EN_TOK  = 4
 AR_TOK  = 8
-TAXE    = AR_TOK / EN_TOK                  # 1.60
-TAXE_PCT = int(round((TAXE - 1) * 100))    # 60
+TAXE    = AR_TOK / EN_TOK                  # 2.0
+TAXE_PCT = int(round((TAXE - 1) * 100))    # 100
 
 TOTAL       = 200019
 LATIN_N     = 134868
@@ -95,7 +95,7 @@ bar_h  = 0.032
 y_en_phrase = 0.722
 y_en_bar    = 0.677
 
-ax.text(LEFT, y_en_phrase, f'"{EN_TXT}"',
+ax.text(LEFT, y_en_phrase, EN_TXT,
         fontsize=19, color=FG, ha="left", va="center")
 
 w_en = BAR_W * (EN_TOK / max_tok)

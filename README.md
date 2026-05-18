@@ -1,6 +1,6 @@
 # darija-tax
 
-> **The same sentence costs +60% more tokens in Darija than in English on ChatGPT.**
+> **The same sentence costs 2× more tokens in Darija than in English on ChatGPT.**
 > Not an opinion — measured directly on OpenAI's official vocabulary file.
 
 ![The Darija Tax](taxe-darija-o200k.png)
@@ -29,8 +29,8 @@ worse model output.
 ## The proof, in 3 sentences
 
 ```text
-"Artificial intelligence is here."   →  5 tokens (English)
-"الذكاء الاصطناعي وصل"               →  8 tokens (Darija)  ← +60%
+Artificial intelligence is here   →  4 tokens (English)
+الذكاء الاصطناعي وصل             →  8 tokens (Darija)  ← +100% (double)
 ```
 
 The tax climbs even higher on **modern, technical Darija** — exactly the
