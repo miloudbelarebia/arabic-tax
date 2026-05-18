@@ -52,10 +52,10 @@ Pashto, Uyghur) pays the same structural tax.
 ## Quickstart
 
 ```bash
-git clone https://github.com/miloudbelarebia/darija-tax
-cd darija-tax
+git clone https://github.com/miloudbelarebia/arabic-tax
+cd arabic-tax
 pip install tiktoken matplotlib arabic-reshaper python-bidi nbformat jupyter
-jupyter notebook darija_tax.ipynb
+jupyter notebook arabic_tax.ipynb
 ```
 
 Or, if you prefer plain Python scripts:
@@ -69,7 +69,7 @@ python3 viz.py                     # regenerates the infographic
 
 | File | What it does |
 |---|---|
-| `darija_tax.ipynb` | **Main notebook** — runs the full analysis end-to-end |
+| `arabic_tax.ipynb` | **Main notebook** — runs the full analysis end-to-end |
 | `analyse_vocab_o200k.py` | Standalone script: classifies the 200,019 tokens |
 | `viz.py` | Generates the 1080×1080 infographic above |
 | `test_logic.py` | 14-case sanity check for the Unicode classifier |
@@ -95,7 +95,7 @@ python3 viz.py                     # regenerates the infographic
   title  = {The Arabic Tax — Measuring Arabic-Script Under-representation
             in OpenAI's Tokenizer},
   year   = {2026},
-  url    = {https://github.com/miloudbelarebia/darija-tax}
+  url    = {https://github.com/miloudbelarebia/arabic-tax}
 }
 ```
 
