@@ -66,19 +66,22 @@ LEFT, RIGHT = 0.06, 0.94
 WIDTH = RIGHT - LEFT
 
 # ==================================================================
-# HEADER  — short title + one-liner mentioning the three big LLMs
+# HEADER  — title + one-liner + scope note (which model the numbers come from)
 # ==================================================================
 ax.text(LEFT, 0.955, "THE DARIJA TAX",
         fontsize=54, fontweight="bold", color=ACCENT, ha="left", va="top")
 ax.text(LEFT, 0.880, "Why Darija costs more on ChatGPT, Claude & Gemini.",
         fontsize=17, color=FG, ha="left", va="top")
+ax.text(LEFT, 0.838,
+        f"Example — ChatGPT's vocabulary ({thou(TOTAL)} entries):",
+        fontsize=12.5, color=MUTED, ha="left", va="top", fontstyle="italic")
 
-ax.plot([LEFT, RIGHT], [0.838, 0.838], color=BORDER, linewidth=1)
+ax.plot([LEFT, RIGHT], [0.808, 0.808], color=BORDER, linewidth=1)
 
 # ==================================================================
 # BLOC 1 : THE DEMONSTRATION (same idea, two languages)
 # ==================================================================
-ax.text(LEFT, 0.808, "Same idea, two languages:",
+ax.text(LEFT, 0.778, "Same idea, two languages:",
         fontsize=13, color=MUTED, ha="left", va="top", fontweight="600")
 
 # Bar geometry (English + Arabic share the same X axis)
@@ -89,8 +92,8 @@ max_tok = max(EN_TOK, AR_TOK)   # 8
 bar_h  = 0.032
 
 # --- English line ---
-y_en_phrase = 0.760
-y_en_bar    = 0.715
+y_en_phrase = 0.730
+y_en_bar    = 0.685
 
 ax.text(LEFT, y_en_phrase, f'"{EN_TXT}"',
         fontsize=19, color=FG, ha="left", va="center")
@@ -105,8 +108,8 @@ ax.text(BAR_X0 + w_en + 0.014, y_en_bar,
         fontsize=15, color=LATIN_C, ha="left", va="center", fontweight="bold")
 
 # --- Arabic line ---
-y_ar_phrase = 0.652
-y_ar_bar    = 0.607
+y_ar_phrase = 0.622
+y_ar_bar    = 0.577
 
 ax.text(RIGHT, y_ar_phrase, f'{ar(AR_TXT)}',
         fontsize=26, color=FG, ha="right", va="center",
@@ -122,9 +125,9 @@ ax.text(BAR_X0 + w_ar + 0.014, y_ar_bar,
         fontsize=15, color=ACCENT, ha="left", va="center", fontweight="bold")
 
 # ==================================================================
-# BLOC 2 : THE HERO NUMBER  (+60%)  — sized to fit inside the card
+# BLOC 2 : THE HERO NUMBER  (+60%)
 # ==================================================================
-card_y0, card_y1 = 0.395, 0.565   # slightly taller card for breathing room
+card_y0, card_y1 = 0.380, 0.545   # height = 0.165
 # Subtle drop shadow (offset card behind)
 ax.add_patch(patches.FancyBboxPatch(
     (LEFT + 0.004, card_y0 - 0.006), WIDTH, card_y1 - card_y0,
@@ -135,21 +138,18 @@ ax.add_patch(patches.FancyBboxPatch(
     boxstyle="round,pad=0,rounding_size=0.025",
     facecolor=CARD, edgecolor=BORDER, linewidth=1.2))
 
-# Hero number — 64pt fits comfortably inside the card (height ~0.17)
-ax.text(0.5, 0.510, f"+{TAXE_PCT}%",
+# Hero number — 64pt fits comfortably inside the card
+ax.text(0.5, 0.493, f"+{TAXE_PCT}%",
         fontsize=64, fontweight="bold", color=ACCENT,
         ha="center", va="center")
-ax.text(0.5, 0.430, "more tokens to say the exact same thing in Darija",
+ax.text(0.5, 0.413, "more tokens to say the exact same thing in Darija",
         fontsize=13.5, color=FG, ha="center", va="center")
 
 # ==================================================================
-# BLOC 3 : WHY ?  (vocabulary imbalance)
+# BLOC 3 : WHY ?  (vocabulary imbalance — bars only, context is in header)
 # ==================================================================
-ax.text(LEFT, 0.370, "WHY?",
+ax.text(LEFT, 0.355, "WHY?",
         fontsize=13, color=MUTED, ha="left", va="top", fontweight="bold")
-ax.text(LEFT, 0.343,
-        f"Example — ChatGPT's vocabulary ({thou(TOTAL)} entries):",
-        fontsize=13.5, color=FG, ha="left", va="top", fontweight="600")
 
 # Bars (scale 0..70% so the Latin bar nearly fills the available width)
 BAR2_X0 = LEFT + 0.08
@@ -159,7 +159,7 @@ bar2_h  = 0.038
 SCALE   = 70
 
 # Latin
-y_lat = 0.285
+y_lat = 0.295
 ax.text(LEFT, y_lat, "Latin",
         fontsize=14, color=FG, ha="left", va="center", fontweight="600")
 w_lat = BAR2_W * (LATIN_PCT / SCALE)
@@ -171,7 +171,7 @@ ax.text(BAR2_X0 + w_lat + 0.012, y_lat,
         fontsize=14, color=LATIN_C, ha="left", va="center", fontweight="bold")
 
 # Arabic
-y_arb = 0.230
+y_arb = 0.235
 ax.text(LEFT, y_arb, "Arabic",
         fontsize=14, color=ACCENT, ha="left", va="center", fontweight="bold")
 w_arb = max(BAR2_W * (ARAB_PCT / SCALE), 0.010)
@@ -182,16 +182,13 @@ ax.text(BAR2_X0 + w_arb + 0.012, y_arb,
         f"{ARAB_PCT:.1f}%",
         fontsize=14, color=ACCENT, ha="left", va="center", fontweight="bold")
 
-# Causal punchline that links the two numbers (tighter spacing)
-ax.text(LEFT, 0.185,
+# Causal punchline + one-line consequence
+ax.text(LEFT, 0.175,
         f"That's {RATIO}× more Latin tokens than Arabic.",
         fontsize=16, color=FG, ha="left", va="top", fontweight="700")
-ax.text(LEFT, 0.148,
-        "Every Arabic sentence eats more tokens —",
-        fontsize=12, color=MUTED, ha="left", va="top")
-ax.text(LEFT, 0.123,
-        "higher API cost, smaller usable context window.",
-        fontsize=12, color=MUTED, ha="left", va="top")
+ax.text(LEFT, 0.138,
+        "Higher API cost. Smaller context window. Fragmented text.",
+        fontsize=11.5, color=MUTED, ha="left", va="top")
 
 # ==================================================================
 # FOOTER  (two lines)
