@@ -68,12 +68,12 @@ WIDTH = RIGHT - LEFT
 # ==================================================================
 # HEADER  — moved title up + opened a clean 25px gap before the subtitle
 # ==================================================================
-ax.text(LEFT, 0.975, "ARABIC COSTS DOUBLE",
-        fontsize=42, fontweight="bold", color=ACCENT, ha="left", va="top")
-ax.text(LEFT, 0.870, "on ChatGPT, Claude & Gemini — the same sentence, twice the tokens.",
+ax.text(LEFT, 0.965, "ARABIC COSTS DOUBLE ON AI",
+        fontsize=28, fontweight="bold", color=ACCENT, ha="left", va="top")
+ax.text(LEFT, 0.890, "on ChatGPT, Claude & Gemini — the same sentence, twice the tokens.",
         fontsize=15.5, color=FG, ha="left", va="top")
-ax.text(LEFT, 0.830,
-        "Darija · Algerian · Egyptian · MSA · Persian · Urdu — same problem.",
+ax.text(LEFT, 0.845,
+        "Darija · Algerian · Egyptian · MSA … — same problem.",
         fontsize=12.5, color=MUTED, ha="left", va="top", fontstyle="italic")
 
 ax.plot([LEFT, RIGHT], [0.800, 0.800], color=BORDER, linewidth=1)
