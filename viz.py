@@ -68,12 +68,12 @@ WIDTH = RIGHT - LEFT
 # ==================================================================
 # HEADER  — moved title up + opened a clean 25px gap before the subtitle
 # ==================================================================
-ax.text(LEFT, 0.980, "THE DARIJA TAX",
+ax.text(LEFT, 0.980, "THE ARABIC TAX",
         fontsize=54, fontweight="bold", color=ACCENT, ha="left", va="top")
-ax.text(LEFT, 0.870, "Why Darija costs more on ChatGPT, Claude & Gemini.",
+ax.text(LEFT, 0.870, "Why Arabic costs more on ChatGPT, Claude & Gemini.",
         fontsize=17, color=FG, ha="left", va="top")
 ax.text(LEFT, 0.830,
-        f"Example — ChatGPT's vocabulary ({thou(TOTAL)} entries):",
+        "Darija · Algerian · Egyptian · MSA · Persian · Urdu — same problem.",
         fontsize=12.5, color=MUTED, ha="left", va="top", fontstyle="italic")
 
 ax.plot([LEFT, RIGHT], [0.800, 0.800], color=BORDER, linewidth=1)
@@ -147,7 +147,7 @@ ax.add_patch(patches.FancyBboxPatch(
 ax.text(0.5, 0.472, f"+{TAXE_PCT}%",
         fontsize=60, fontweight="bold", color=ACCENT,
         ha="center", va="center")
-ax.text(0.5, 0.390, "more tokens to say the exact same thing in Darija",
+ax.text(0.5, 0.390, "more tokens to say the exact same thing in Arabic",
         fontsize=13.5, color=FG, ha="center", va="center")
 
 # ==================================================================

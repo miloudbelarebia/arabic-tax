@@ -1,9 +1,10 @@
-# darija-tax
+# the-arabic-tax
 
-> **The same sentence costs 2× more tokens in Darija than in English on ChatGPT.**
+> **The same sentence costs 2× more tokens in Arabic than in English on ChatGPT.**
 > Not an opinion — measured directly on OpenAI's official vocabulary file.
+> Affects every Arabic-script language: **Darija, Algerian, Egyptian, MSA, Persian, Urdu**.
 
-![The Darija Tax](taxe-darija-o200k.png)
+![The Arabic Tax](taxe-darija-o200k.png)
 
 ## What this repo measures
 
@@ -18,7 +19,7 @@ shows that:
 |---|---:|---:|
 | Latin (English, code, European languages) | **134,868** | **67.4%** |
 | CJK (Chinese, Japanese, Korean) | 10,584 | 5.3% |
-| **Arabic** (MSA, Darija, Persian, Urdu — all combined) | **7,964** | **4.0%** |
+| **Arabic script** (MSA, Darija, Algerian, Egyptian, Persian, Urdu — all combined) | **7,964** | **4.0%** |
 | Other (punctuation, digits, symbols) | 46,603 | 23.3% |
 
 → **Latin gets 17× more dedicated tokens than Arabic.** And the
@@ -26,17 +27,22 @@ consequence is direct: the same idea takes more tokens in Arabic, which
 means more API cost, smaller context window, slower answers, and
 worse model output.
 
-## The proof, in 3 sentences
+## The proof, in 2 sentences
 
 ```text
 Artificial intelligence is here   →  4 tokens (English)
-الذكاء الاصطناعي وصل             →  8 tokens (Darija)  ← +100% (double)
+الذكاء الاصطناعي وصل             →  8 tokens (Arabic)  ← +100% (double)
 ```
 
-The tax climbs even higher on **modern, technical Darija** — exactly the
+The tax climbs even higher on **modern, technical Arabic** — exactly the
 register you need to talk about data, AI, business. Words like *data*,
 *model*, *AI* are single tokens in English; in Arabic they don't exist
 in the vocabulary at all and get fragmented.
+
+**This isn't a Darija problem. It's an Arabic-script problem.** Every dialect
+written in Arabic letters — Moroccan Darija, Algerian, Tunisian, Egyptian,
+Levantine, Gulf, MSA — and every Arabic-script language (Persian, Urdu,
+Pashto, Uyghur) pays the same structural tax.
 
 > **Same pattern on Claude and Gemini.** Their tokenizers are
 > proprietary so we can't measure them with the same precision, but
@@ -71,10 +77,10 @@ python3 viz.py                     # regenerates the infographic
 
 ## Why this matters
 
-- **Cost.** A product that serves Arabic-speaking users pays a structural
-  premium on every API call.
-- **Context.** A 128k-token window in English ≈ 80k of usable content
-  in Darija.
+- **Cost.** A product that serves Arabic-speaking users (~500 million people)
+  pays a structural premium on every API call.
+- **Context.** A 128k-token window in English ≈ 64k of usable content
+  in Arabic.
 - **Quality.** Tokenizers shape what models *see*. Fragmented input →
   weaker output.
 - **Linguistic sovereignty.** The dominant AI stack treats some
@@ -84,9 +90,9 @@ python3 viz.py                     # regenerates the infographic
 ## Cite this
 
 ```bibtex
-@misc{belarebia2026darijatax,
+@misc{belarebia2026arabictax,
   author = {Belarebia, Miloud},
-  title  = {The Darija Tax — Measuring Arabic Under-representation
+  title  = {The Arabic Tax — Measuring Arabic-Script Under-representation
             in OpenAI's Tokenizer},
   year   = {2026},
   url    = {https://github.com/miloudbelarebia/darija-tax}
@@ -96,7 +102,7 @@ python3 viz.py                     # regenerates the infographic
 ## Author
 
 **Miloud Belarebia** — [@miloudbelarebia](https://github.com/miloudbelarebia)
-Brand: `#DataBelarebia`
+Website: [databelarebia.com](https://databelarebia.com)
 
 ## License
 
