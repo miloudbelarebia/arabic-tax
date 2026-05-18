@@ -1,4 +1,4 @@
-# darija-tokens
+# darija-tax
 
 > **The same sentence costs +60% more tokens in Darija than in English on ChatGPT.**
 > Not an opinion — measured directly on OpenAI's official vocabulary file.
@@ -46,8 +46,8 @@ in the vocabulary at all and get fragmented.
 ## Quickstart
 
 ```bash
-git clone https://github.com/miloudbelarebia/darija-tokens
-cd darija-tokens
+git clone https://github.com/miloudbelarebia/darija-tax
+cd darija-tax
 pip install tiktoken matplotlib arabic-reshaper python-bidi nbformat jupyter
 jupyter notebook darija_tax.ipynb
 ```
@@ -84,12 +84,12 @@ python3 viz.py                     # regenerates the infographic
 ## Cite this
 
 ```bibtex
-@misc{belarebia2026darijatokens,
+@misc{belarebia2026darijatax,
   author = {Belarebia, Miloud},
   title  = {The Darija Tax — Measuring Arabic Under-representation
             in OpenAI's Tokenizer},
   year   = {2026},
-  url    = {https://github.com/miloudbelarebia/darija-tokens}
+  url    = {https://github.com/miloudbelarebia/darija-tax}
 }
 ```
 

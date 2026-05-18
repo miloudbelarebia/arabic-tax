@@ -204,7 +204,7 @@ ax.text(RIGHT, 0.052,
         "#DataBelarebia",
         fontsize=10.5, color=FG, ha="right", va="center", fontweight="bold")
 ax.text(LEFT, 0.022,
-        "Reproducible notebook: github.com/miloudbelarebia/darija-tokens",
+        "Reproducible notebook: github.com/miloudbelarebia/darija-tax",
         fontsize=9.5, color=ACCENT, ha="left", va="center", fontweight="600")
 ax.text(RIGHT, 0.022,
         "Miloud Belarebia",
