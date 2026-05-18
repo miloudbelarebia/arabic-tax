@@ -216,7 +216,7 @@ ax.text(RIGHT, 0.014,
         fontsize=10, color=MUTED, ha="right", va="center")
 
 # ------------------------------------------------------------------
-out_path = os.path.join(os.path.dirname(__file__), "taxe-darija-o200k.png")
+out_path = os.path.join(os.path.dirname(__file__), "the-arabic-tax.png")
 fig.savefig(out_path, facecolor=BG, dpi=150)
 print(f"Image generated: {out_path}")
 print(f"Dimensions    : {W}x{H} px (square 1:1)")

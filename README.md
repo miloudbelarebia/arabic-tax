@@ -4,7 +4,7 @@
 > Not an opinion — measured directly on OpenAI's official vocabulary file.
 > Affects every Arabic-script language: **Darija, Algerian, Egyptian, MSA, Persian, Urdu**.
 
-![The Arabic Tax](taxe-darija-o200k.png)
+![The Arabic Tax](the-arabic-tax.png)
 
 ## What this repo measures
 
@@ -73,7 +73,7 @@ python3 viz.py                     # regenerates the infographic
 | `analyse_vocab_o200k.py` | Standalone script: classifies the 200,019 tokens |
 | `viz.py` | Generates the 1080×1080 infographic above |
 | `test_logic.py` | 14-case sanity check for the Unicode classifier |
-| `taxe-darija-o200k.png` | The infographic (ready for social media) |
+| `the-arabic-tax.png` | The infographic (ready for social media) |
 
 ## Why this matters
 
