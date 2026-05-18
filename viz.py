@@ -154,10 +154,11 @@ ax.text(0.5, 0.410, "more tokens to say the exact same thing in Darija",
 ax.text(LEFT, 0.355, "WHY?",
         fontsize=13, color=MUTED, ha="left", va="top", fontweight="bold")
 
-# Bars — labels are anchored just left of the bar (ha=right) so there is
-# no visual gap between the label and its bar.
-LABEL_X = LEFT + 0.075          # right edge of the label column
-BAR2_X0 = LABEL_X + 0.012       # bars start with a 12 px breathing space
+# Bars — labels left-anchored at LEFT (same X as everything else in the
+# infographic), bars start at a fixed BAR2_X0 with room for the longest
+# label ("Arabic"). Each label uses its own bar's color for tight visual
+# coherence: blue label → blue bar → blue %, red label → red bar → red %.
+BAR2_X0 = LEFT + 0.085          # bars start after the label column
 BAR2_X1 = RIGHT - 0.18
 BAR2_W  = BAR2_X1 - BAR2_X0
 bar2_h  = 0.038
@@ -165,8 +166,8 @@ SCALE   = 70
 
 # Latin
 y_lat = 0.295
-ax.text(LABEL_X, y_lat, "Latin",
-        fontsize=14, color=FG, ha="right", va="center", fontweight="600")
+ax.text(LEFT, y_lat, "Latin",
+        fontsize=14, color=LATIN_C, ha="left", va="center", fontweight="bold")
 w_lat = BAR2_W * (LATIN_PCT / SCALE)
 ax.add_patch(patches.Rectangle(
     (BAR2_X0, y_lat - bar2_h/2), w_lat, bar2_h,
@@ -177,8 +178,8 @@ ax.text(BAR2_X0 + w_lat + 0.012, y_lat,
 
 # Arabic
 y_arb = 0.235
-ax.text(LABEL_X, y_arb, "Arabic",
-        fontsize=14, color=ACCENT, ha="right", va="center", fontweight="bold")
+ax.text(LEFT, y_arb, "Arabic",
+        fontsize=14, color=ACCENT, ha="left", va="center", fontweight="bold")
 w_arb = max(BAR2_W * (ARAB_PCT / SCALE), 0.010)
 ax.add_patch(patches.Rectangle(
     (BAR2_X0, y_arb - bar2_h/2), w_arb, bar2_h,
