@@ -66,22 +66,22 @@ LEFT, RIGHT = 0.06, 0.94
 WIDTH = RIGHT - LEFT
 
 # ==================================================================
-# HEADER  — title + one-liner + scope note (which model the numbers come from)
+# HEADER  — moved title up + opened a clean 25px gap before the subtitle
 # ==================================================================
-ax.text(LEFT, 0.955, "THE DARIJA TAX",
+ax.text(LEFT, 0.980, "THE DARIJA TAX",
         fontsize=54, fontweight="bold", color=ACCENT, ha="left", va="top")
-ax.text(LEFT, 0.880, "Why Darija costs more on ChatGPT, Claude & Gemini.",
+ax.text(LEFT, 0.870, "Why Darija costs more on ChatGPT, Claude & Gemini.",
         fontsize=17, color=FG, ha="left", va="top")
-ax.text(LEFT, 0.838,
+ax.text(LEFT, 0.830,
         f"Example — ChatGPT's vocabulary ({thou(TOTAL)} entries):",
         fontsize=12.5, color=MUTED, ha="left", va="top", fontstyle="italic")
 
-ax.plot([LEFT, RIGHT], [0.808, 0.808], color=BORDER, linewidth=1)
+ax.plot([LEFT, RIGHT], [0.800, 0.800], color=BORDER, linewidth=1)
 
 # ==================================================================
 # BLOC 1 : THE DEMONSTRATION (same idea, two languages)
 # ==================================================================
-ax.text(LEFT, 0.778, "Same idea, two languages:",
+ax.text(LEFT, 0.770, "Same idea, two languages:",
         fontsize=13, color=MUTED, ha="left", va="top", fontweight="600")
 
 # Bar geometry (English + Arabic share the same X axis)
@@ -92,8 +92,8 @@ max_tok = max(EN_TOK, AR_TOK)   # 8
 bar_h  = 0.032
 
 # --- English line ---
-y_en_phrase = 0.730
-y_en_bar    = 0.685
+y_en_phrase = 0.722
+y_en_bar    = 0.677
 
 ax.text(LEFT, y_en_phrase, f'"{EN_TXT}"',
         fontsize=19, color=FG, ha="left", va="center")
@@ -108,8 +108,8 @@ ax.text(BAR_X0 + w_en + 0.014, y_en_bar,
         fontsize=15, color=LATIN_C, ha="left", va="center", fontweight="bold")
 
 # --- Arabic line ---
-y_ar_phrase = 0.622
-y_ar_bar    = 0.577
+y_ar_phrase = 0.614
+y_ar_bar    = 0.569
 
 # Anchor the Arabic phrase to the END of its red bar (BAR_X1) so phrase
 # and bar visually finish at the same X — instead of the phrase floating
@@ -132,7 +132,7 @@ ax.text(BAR_X0 + w_ar + 0.014, y_ar_bar,
 # Card moved down 10px to give a uniform 30px gap above (after Bar AR)
 # and below (before WHY?). +60% set at 60pt and properly centered.
 # ==================================================================
-card_y0, card_y1 = 0.370, 0.540   # height = 0.170, ~30px gap each side
+card_y0, card_y1 = 0.362, 0.532   # height = 0.170, ~30px gap each side
 # Subtle drop shadow (offset card behind)
 ax.add_patch(patches.FancyBboxPatch(
     (LEFT + 0.004, card_y0 - 0.006), WIDTH, card_y1 - card_y0,
@@ -144,16 +144,16 @@ ax.add_patch(patches.FancyBboxPatch(
     facecolor=CARD, edgecolor=BORDER, linewidth=1.2))
 
 # Hero number — 60pt, vertically centered with breathing room
-ax.text(0.5, 0.480, f"+{TAXE_PCT}%",
+ax.text(0.5, 0.472, f"+{TAXE_PCT}%",
         fontsize=60, fontweight="bold", color=ACCENT,
         ha="center", va="center")
-ax.text(0.5, 0.398, "more tokens to say the exact same thing in Darija",
+ax.text(0.5, 0.390, "more tokens to say the exact same thing in Darija",
         fontsize=13.5, color=FG, ha="center", va="center")
 
 # ==================================================================
 # BLOC 3 : WHY ?  (~30px below the card, uniform with the other gaps)
 # ==================================================================
-ax.text(LEFT, 0.340, "WHY?",
+ax.text(LEFT, 0.332, "WHY?",
         fontsize=13, color=MUTED, ha="left", va="top", fontweight="bold")
 
 # Bars — labels left-anchored at LEFT (same X as everything else in the
@@ -167,7 +167,7 @@ bar2_h  = 0.038
 SCALE   = 70
 
 # Latin
-y_lat = 0.280
+y_lat = 0.272
 ax.text(LEFT, y_lat, "Latin",
         fontsize=14, color=LATIN_C, ha="left", va="center", fontweight="bold")
 w_lat = BAR2_W * (LATIN_PCT / SCALE)
@@ -179,7 +179,7 @@ ax.text(BAR2_X0 + w_lat + 0.012, y_lat,
         fontsize=14, color=LATIN_C, ha="left", va="center", fontweight="bold")
 
 # Arabic
-y_arb = 0.225
+y_arb = 0.217
 ax.text(LEFT, y_arb, "Arabic",
         fontsize=14, color=ACCENT, ha="left", va="center", fontweight="bold")
 w_arb = max(BAR2_W * (ARAB_PCT / SCALE), 0.010)
@@ -191,27 +191,27 @@ ax.text(BAR2_X0 + w_arb + 0.012, y_arb,
         fontsize=14, color=ACCENT, ha="left", va="center", fontweight="bold")
 
 # Causal punchline + one-line consequence
-ax.text(LEFT, 0.170,
+ax.text(LEFT, 0.162,
         f"That's {RATIO}× more Latin tokens than Arabic.",
         fontsize=16, color=FG, ha="left", va="top", fontweight="700")
-ax.text(LEFT, 0.130,
+ax.text(LEFT, 0.122,
         "Higher API cost. Smaller context window. Fragmented text.",
         fontsize=11.5, color=MUTED, ha="left", va="top")
 
 # ==================================================================
 # FOOTER  (two lines)
 # ==================================================================
-ax.plot([LEFT, RIGHT], [0.085, 0.085], color=BORDER, linewidth=1)
-ax.text(LEFT, 0.052,
+ax.plot([LEFT, RIGHT], [0.077, 0.077], color=BORDER, linewidth=1)
+ax.text(LEFT, 0.044,
         "Data source: github.com/openai/tiktoken  ·  vocab o200k_base",
         fontsize=10, color=MUTED, ha="left", va="center")
-ax.text(RIGHT, 0.052,
+ax.text(RIGHT, 0.044,
         "#DataBelarebia",
         fontsize=10.5, color=FG, ha="right", va="center", fontweight="bold")
-ax.text(LEFT, 0.022,
+ax.text(LEFT, 0.014,
         "Reproducible notebook: github.com/miloudbelarebia/darija-tax",
         fontsize=9.5, color=ACCENT, ha="left", va="center", fontweight="600")
-ax.text(RIGHT, 0.022,
+ax.text(RIGHT, 0.014,
         "Miloud Belarebia",
         fontsize=10, color=MUTED, ha="right", va="center")
 
