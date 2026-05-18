@@ -206,7 +206,7 @@ ax.text(LEFT, 0.044,
         "Data source: github.com/openai/tiktoken  ·  vocab o200k_base",
         fontsize=10, color=MUTED, ha="left", va="center")
 ax.text(RIGHT, 0.044,
-        "#DataBelarebia",
+        "databelarebia.com",
         fontsize=10.5, color=FG, ha="right", va="center", fontweight="bold")
 ax.text(LEFT, 0.014,
         "Reproducible notebook: github.com/miloudbelarebia/darija-tax",
